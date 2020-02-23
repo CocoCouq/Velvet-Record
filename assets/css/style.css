@@ -22,7 +22,7 @@
 }
 .btnEnvoie
 {
-    min-width: 150px;
+    max-width: 52px;
 }
 #titlArt
 {
@@ -31,4 +31,9 @@
 #titleArtLarg
 {
     font-size: 3vw;
+}
+#pDelete
+{
+    font-size: 3vw;
+    color: red;
 }

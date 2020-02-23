@@ -34,14 +34,14 @@
             </tbody>
         </table>
             <div class="row section">
-                <div class="col s3 offset-s1">
-                    <form class="section" action="vue_update.php" method="post">
-                        <button class="btnEnvoie btn waves-effect waves-light section" type="submit" name="action">Modifier
+                <div class="col s10 offset-s1">
+                    <form class="section" action="vue_update_delete.php" method="post">
+                        <input type="hidden" name="hiddenDisc" value="<?= $row->disc_id ?>">
+                        <input type="hidden" name="hiddenArtist" value="<?= $artist ?>">
+                        <button class="btnEnvoie btn waves-effect waves-light" type="submit" name="edit" title="Modifier">
                             <i class="material-icons right">edit</i>
                         </button>
-                    </form>
-                    <form action="vue_delete.php">
-                        <button class="btnEnvoie btn waves-effect waves-light red" type="submit" name="action">Supprimer
+                        <button class="btnEnvoie btn waves-effect waves-light red" type="submit" name="delete" title="Supprimer">
                             <i class="material-icons right">delete</i>
                         </button>
                     </form>

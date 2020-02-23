@@ -1,5 +1,6 @@
 <?php  
-    $disc = htmlspecialchars($_GET['hiddenDisc']);
+
+    $disc = htmlspecialchars($_REQUEST['hiddenDisc']);
     
     $requete = 'SELECT * FROM disc WHERE disc_id = :disc';
     $result = $db->prepare($requete);
