@@ -8,5 +8,6 @@
     $result->execute();
     $row = $result->fetchAll();
     $count_disque = count($row);
-    $result->closeCursor(); 
+    $result->closeCursor();
+    
 ?>

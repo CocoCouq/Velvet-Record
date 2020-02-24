@@ -1,16 +1,13 @@
 <?php include '../common/header.php' ?>
 <?php include '../../controllers/c_details_disc.php' ?>
 
-<?php 
-    $artist = htmlspecialchars($_GET['hiddenArtiste']); 
-?>
 
 <main>
     <div class="row">
-        <input class="col offset-s1 btn" type="button" value="Retour" name="Retour">
+        <input id="returnBtn" class="col offset-s1 btn" type="button" value="Retour" name="Retour">
     </div>
     <h1 class="center-align"><?= $row->disc_title ?></h1>
-    <h2 id="titleArtLarg" class="center-align flow-text hide-on-med-and-down"><?= $artist ?></h2>
+    <h2 id="titleArtLarg" class="center-align flow-text hide-on-med-and-down"><?= $row->artist_name ?></h2>
     <div class="row">
         <section class="col s5 offset-s1">
         <table class="highlight centered blue-grey lighten-4 z-depth-3">  
@@ -37,7 +34,6 @@
                 <div class="col s10 offset-s1">
                     <form class="section" action="vue_update_delete.php" method="post">
                         <input type="hidden" name="hiddenDisc" value="<?= $row->disc_id ?>">
-                        <input type="hidden" name="hiddenArtist" value="<?= $artist ?>">
                         <button class="btnEnvoie btn waves-effect waves-light" type="submit" name="edit" title="Modifier">
                             <i class="material-icons right">edit</i>
                         </button>
@@ -49,7 +45,7 @@
             </div>
         </section>
         <section class="col s4 offset-s1">
-            <h2 id="titlArt" class="center-align hide-on-large-only"><?= $artist ?></h2>
+            <h2 id="titlArt" class="center-align hide-on-large-only"><?= $row->artist_name ?></h2>
             <article>
                 <img class="responsive-img z-depth-3" src="../../assets/img/<?= $row->disc_picture ?>" alt="Image">
             </article>

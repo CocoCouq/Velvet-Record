@@ -1,7 +1,6 @@
 <?php include '../common/header.php' ?>
 
 <?php 
-    $artist = htmlspecialchars($_POST['hiddenArtist']);
 
     if(isset($_POST['delete']))
     {
@@ -9,6 +8,11 @@
         <p id="pDelete" class="fow-text center-align">Disque supprimé</p> 
         <p class="center-align" id="timerDelete">Redirection dans 5 secondes</p><?php
         header('Refresh: 4; URL=../../index.php');
+    }
+    else if (isset($_POST['ajout_photo']))
+    {
+        include '../../controllers/c_ajout_photo.php';
+        
     }
     else if (isset ($_POST['edit']))
     {    
@@ -24,7 +28,7 @@
         <div>
             <div class="input-field">
                 <select id="selectArtiste" name="Artist">
-                    <option value="<?= $row->artist_id ?>"><?= $artist ?></option>
+                    <option value="<?= $row->artist_id ?>"><?= $row->artist_name ?></option>
                     <?php 
                         include '../../controllers/c_detail_artist.php'; 
                         foreach ($row_artiste as $line) {
@@ -56,22 +60,28 @@
         </div>
         <input type="hidden" name="hiddenDisc" value="<?= $row->disc_id ?>">
         <button class="btn waves-effect waves-light" type="submit" name="modifier_self">Modifier
-            <i class="material-icons right">send</i>
+            <i class="material-icons right">edit</i>
         </button>
         <div class="section">
-            <input class="btn" type="button" value="Retour" name="Retour">
+            <input id="returnBtn" class="btn" type="button" value="Retour" name="Retour">
         </div>
     </form>
     <!--Faire l'ajout de photo-->
-    <form class="row" action="<?php print $_SERVER['PHP_SELF'] ?>" method="post">
+    <form class="row" action="<?php print $_SERVER['PHP_SELF'] ?>" method="post" enctype="multipart/form-data">
+        <input type="hidden" value="<?= $row->disc_id ?>" name="hiddenDisc">
         <div class="file-field input-field col l4 offset-l4 m6 offset-m3 s8 offset-s2">
             <div class="btn blue">
                 <span>Image</span>
-                <input type="file">
+                <input type="file" name="imagePochette">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
             </div>
+        </div>
+        <div class="col s8 offset-s2 center-align">
+            <button class="btn waves-effect waves-light blue" type="submit" name="ajout_photo">Valider
+                <i class="material-icons right">add</i>
+            </button>
         </div>
     </form>
     <div class="row">
