@@ -1,6 +1,6 @@
 <?php  
-    $idArt = htmlspecialchars($_POST['idArtist']);
-    
+    $idArt = htmlspecialchars($_POST['hiddenID']);
+    var_dump($idArt);
     $requete_disc = 'DELETE FROM disc WHERE artist_id =:idArtist';
     $result_disc = $db->prepare($requete_disc);
     $result_disc->bindValue(':idArtist', $idArt);

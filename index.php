@@ -14,7 +14,7 @@
         <div class="col l1 offset-l1 m2 offset-m1 s3 offset-s1">
             <img class="responsive-img" src="assets/img/logo_record.png" title="Logo" alt="Logo Record">
         </div>
-        <div class="col l4 offset-l5 m6 offset-m3 s8 offset-s1">
+        <div class="col l4 offset-l5 m5 offset-m2 s6 offset-s1">
             <div class="row">
                 <blockquote id="slogan" cite="Oxmo Puccino" class="col s12">"Le talent, c'est l'audace que les autres n'ont pas."</blockquote>
                 <small class="col l5 offset-l6 m6 offset-m7 s7 offset-s6">Oxmo Puccino</small>
