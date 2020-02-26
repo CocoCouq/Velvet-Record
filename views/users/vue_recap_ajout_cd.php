@@ -2,6 +2,13 @@
 <?php include '../../controllers/c_ajout_cd.php' ?>
 
 <main>
+    <div class="row section valign-wrapper">
+        <p class="col offset-s1 flow-text white-text">Ajouter un autre</p>
+        <a href="vue_ajout_cd.php" class="btn-floating btn-large waves-effect waves-light col" title="Ajouter un autre"><i class="material-icons">add</i></a>
+
+        <p class="col offset-s1 flow-text white-text">Retour aux CD</p>
+        <a href="vue_cd.php" class="btn-floating btn-large waves-effect waves-light col" title="Ajouter un autre"><i class="material-icons">undo</i></a>
+    </div>
     <h1 class="center-align">CD-ROM ajouté</h1>
     <table class="container striped centered section">
         <thead>

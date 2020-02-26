@@ -4,10 +4,8 @@
 
     if(isset($_POST['delete']))
     {
-        include '../../controllers/c_delete.php'; ?>
-        <p id="pDelete" class="fow-text center-align">Disque supprimé</p> 
-        <p class="center-align" id="timerDelete">Redirection dans 5 secondes</p><?php
-        header('Refresh: 4; URL=../../index.php');
+        include '../../controllers/c_delete.php'; 
+        header('location:vue_cd.php');
     }
     else if (isset($_POST['ajout_photo']))
     {
@@ -72,7 +70,7 @@
         <div class="file-field input-field col l4 offset-l4 m6 offset-m3 s8 offset-s2">
             <div class="btn blue">
                 <span>Image</span>
-                <input type="file" name="imagePochette">
+                <input id="file_pict" type="file" name="imagePochette">
             </div>
             <div class="file-path-wrapper">
                 <input class="file-path validate" type="text">
@@ -85,7 +83,7 @@
         </div>
     </form>
     <div class="row">
-        <img src="../../assets/img/<?= $row->disc_picture ?>" alt="Pochette" class="col m4 offset-m4 s6 offset-s3 responsive-img" title="image pochette">
+        <img id="id_image_load" src="../../assets/img/<?= $row->disc_picture ?>" alt="Pochette" class="col m4 offset-m4 s6 offset-s3 responsive-img" title="image pochette">
     </div>
 </main>
         

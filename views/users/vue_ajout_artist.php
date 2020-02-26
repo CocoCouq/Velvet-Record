@@ -4,16 +4,9 @@
     
     if (isset($_POST['ajout_artist']))
     {
-        include '../../controllers/c_ajout_artist.php'; ?>
-        <section>
-            <h1 class="center-align"><?= $name ?></h1>
-            <article>
-                <p class="center-align red-text flow-text">Bien ajouté aux artistes</p>
-                <p class="center-align">Redirection dans 5 secondes</p>
-            </article>
-        </section><?php
+        include '../../controllers/c_ajout_artist.php'; 
+        header('location:vue_artistes.php');
     }
-    else {
 ?>
 
 
@@ -36,6 +29,5 @@
     
 </main>
 
-    <?php } ?>
 
 <?php include '../common/footer.php' ?>

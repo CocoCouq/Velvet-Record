@@ -1,4 +1,5 @@
-<?php include 'models/connexion.php' ?>
+<?php include 'controllers/connexion.php' ?>
+<?php include 'controllers/c_index.php' ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -58,26 +59,56 @@
                 <b class="col s4 offset-s8">L'équipe Velvet Record</b>
             </article>
         </section>
-        <section class="blue-grey lighten-4 z-depth-2">
-            <h2 class="flow-text center-align section">Nos coups de coeurs</h2>
+<!-- Nouveautés -->       
+        <section class="blue-grey lighten-4 z-depth-2 hide-on-med-and-down">
+            <h3 class="center-align section">Nouveautés</h3>
             <article class="row">
                 <!--Ajouter 3 cd et 3 artistes--> 
-                <p class="col s4 offset-s4 center-align">A venir</p>
+                <?php foreach ($tableau as $new) { ?>
+                    <div class="cardCD col l4 section">
+                        <div class="card blue-grey darken-4">
+                            <div class="card-content white-text">
+                                <span class="card-title titleDisc center-align z-depth-4 section blue-grey"><?= $new->disc_title ?></span>
+                                <h4 id="artistCDcard" class="center-align light-blue-text"><?= $new->artist_name ?></h4>
+                                <article class="center-align">
+                                    <p class="flow-text">Genre</p>
+                                    <p class="genreDisc"><?= $new->disc_genre ?></p>
+                                </article>
+                                    <article class="row valign-wrapper">
+                                        <img class="responsive-img col l6 offset-l3" src="assets/img/<?= $new->disc_picture ?>" alt="ImagesDisques" title="images cd-rom">
+                                    </article>
+                                <article class="col s4 offset-s4 center-align">
+                                    <p class="divider section blue-grey darken-4"></p>
+                                    <div class="articlePrix blue-grey lighten-4 black-text z-depth-3">
+                                        <p class="flow-text z-depth-1">Prix</p>
+                                        <p><?= $new->disc_price ?>€</p>
+                                    </div>
+                                </article>
+                            </div>
+                            <div class="card-action">
+                                <form class="row" action="views/users/vue_details_cd.php" method="get">
+                                    <input type="hidden" value="<?= $new->disc_id ?>" name="hiddenDisc">
+                                    <input class="waves-effect waves-light btn col s4 offset-s4" type="submit" value="Voir">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <?php } ?>
             </article>
         </section>
     </main>
 <!-- FOOTER -->
     <footer>
-        <nav class="blue-grey lighten-4 z-depth-2 row hide-on-med-and-down" aria-label="navFooter">
-            <ul class="col offset-s4">
-                <li>
-                    <a class="black-text" href="#" title="Mentions">Mentions légales</a>
+        <nav class="blue-grey lighten-4 z-depth-2 hide-on-med-and-down" aria-label="navFooter">
+            <ul class="row center-align">
+                <li class="col s4">
+                    <a class="black-text" href="" title="Mentions">Mentions légales</a>
                 </li>
-                <li>
-                    <a class="black-text" href="#" title="Horaires">Horaires</a>
+                <li class="col s4">
+                    <a class="black-text" href="" title="Horaires">Horaires</a>
                 </li>
-                <li>
-                    <a class="black-text" href="#" title="Plan">Plan du site</a>
+                <li class="col s4">
+                    <a class="black-text" href="" title="Plan">Plan du site</a>
                 </li>
             </ul>
         </nav>

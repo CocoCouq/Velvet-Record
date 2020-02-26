@@ -33,9 +33,11 @@ if (in_array($mimetype, $aMimeTypes))
     if($size < 100000)
     {
         move_uploaded_file($_FILES['imagePochette']['tmp_name'], $destination); ?>
-        <p class="center-align flow-text">Téléchargement réussi</p>
-        <p class="center-align red-text">Redirection dans 5 secondes</p><?php
-        header('Refresh: 4; URL=vue_cd.php');
+        <h1 class="center-align flow-text">Téléchargement réussi</h1>
+        <h2 class="center-align"><?= $title_final ?></h2>
+        <p class="center-align">Nouvelle pochette :</p>
+        <div class="center-align"><img src="../../assets/img/<?= $name_final ?>" alt="Nouvelle image"></div><?php
+        header('Refresh: 2; URL=vue_cd.php');
     }
     else
     {

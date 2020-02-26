@@ -1,8 +1,8 @@
-<?php include '../../models/connexion.php' ?>
+<?php include '../../controllers/connexion.php' ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="../../assets/css/material_icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../assets/css/materialize.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <meta charset="UTF-8">

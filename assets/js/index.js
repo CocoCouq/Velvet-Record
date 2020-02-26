@@ -12,18 +12,18 @@ document.addEventListener('DOMContentLoaded', function() {
   var elems = document.querySelectorAll('select');
   var instances = M.FormSelect.init(elems, options);
 });
-//Modal
+// Modal
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
   });
-// Retour Bouton
+// Retour Bouton - History Back
 document.getElementById('returnBtn').addEventListener('click', function(event)
 {
     window.history.back();
 });
 
-//Photo dynamique ajout de photo
+// Photo dynamique ajout de photo : Evenement change sur le input type file
 document.getElementById('file_pict').addEventListener('change', function (event){
     var input = document.getElementById('file_pict');
     if(input.files && input.files[0])
@@ -35,3 +35,8 @@ document.getElementById('file_pict').addEventListener('change', function (event)
         reader.readAsDataURL(input.files[0]);
     }
 });
+
+
+
+
+
