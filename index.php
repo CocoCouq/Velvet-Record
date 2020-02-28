@@ -1,4 +1,4 @@
-<?php include 'controllers/connexion.php' ?>
+<?php include 'models/connexion.php' ?>
 <?php include 'controllers/c_index.php' ?>
 <!DOCTYPE html>
 <html lang="fr">

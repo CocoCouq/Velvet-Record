@@ -1,9 +1,10 @@
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_disques_artiste.php' ?>
+<?php include '../../controllers/c_details.php' ?>
 
 <h1 class="center-align"><?= $artist ?> (<?= $count_disque ?>)</h1>   
 <main>
     <section class="row">
+        
         <?php foreach ($row as $cd) { ?>
         
             <div class="col l4 m6 s12">
@@ -39,9 +40,10 @@
                   </div>
                 </div>
                 <div class="card-action center-align">
+<!-- Détails -->
                     <form action="vue_details_cd.php" method="get">
-                        <input type="hidden" value="<?= $artist ?>" name="hiddenArtiste">
-                        <input type="hidden" value="<?= $cd->disc_id ?>" name="hiddenDisc">
+                        <input type="hidden" value="<?= $artist ?>" name="artist_name">
+                        <input type="hidden" value="<?= $cd->disc_id ?>" name="disc_id">
                         <input class="waves-effect waves-light btn" type="submit" value="Détails">
                     </form>
                 </div>

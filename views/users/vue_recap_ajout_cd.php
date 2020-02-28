@@ -1,5 +1,5 @@
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_ajout_cd.php' ?>
+<?php include '../../controllers/c_recap_ajout_cd.php' ?>
 
 <main>
     <div class="row section valign-wrapper">

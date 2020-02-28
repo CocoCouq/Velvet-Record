@@ -1,11 +1,10 @@
 <?php include '../common/header.php' ?>
 
 <?php 
-    
-    if (isset($_POST['ajout_artist']))
+    // Si l'ajout de l'artiste est réalisé
+    if (isset($_POST['ajout_artist'])) 
     {
-        include '../../controllers/c_ajout_artist.php'; 
-        header('location:vue_artistes.php');
+        include '../../controllers/c_ajout_artist.php';
     }
 ?>
 

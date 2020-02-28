@@ -1,4 +1,5 @@
 <?php include '../common/header.php' ?>
+<?php include '../../controllers/c_ajout_cd.php' ?>
 
 <main>
     <form class="container" action="vue_recap_ajout_cd.php" method="post" enctype="multipart/form-data">
@@ -8,14 +9,14 @@
         </div>
         <div>
             <div class="input-field">
+<!--SELECT-->
                 <select id="selectArtiste" name="Artist">
                     <option value="0" disabled selected>Choisissez</option>
-                    <?php 
-                        include '../../controllers/c_detail_artist.php'; 
-                        foreach ($row_artiste as $line) {
-                    ?>
+                    
+                    <?php foreach ($row_artiste as $line) { ?>
                     <option value="<?= $line->artist_id ?>"><?= $line->artist_name ?></option>
                     <?php } ?>
+                    
                 </select>
                 <label for="selectArtist">Artiste</label>
             </div>

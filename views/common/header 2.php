@@ -1,5 +1,4 @@
-<?php include '../../controllers/lib/library.php' ?>
-<?php include '../../models/connexion.php' ?>
+<?php include '../../controllers/connexion.php' ?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

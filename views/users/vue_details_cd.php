@@ -1,5 +1,5 @@
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_details_disc.php' ?>
+<?php include '../../controllers/c_details_cd.php' ?>
 
 
 <main>

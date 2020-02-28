@@ -1,6 +1,5 @@
 <?php include '../common/header.php' ?>
-
-<?php include '../../controllers/c_disc_list.php' ?>
+<?php include '../../controllers/c_cd.php' ?>
 
 <main>
     <h1 class="center-align">CD-ROM (<?= $count_disque ?>)</h1>
@@ -8,14 +7,12 @@
         <a class="white-text" href="vue_ajout_cd.php" title="Ajouter un artiste">Ajouter</a>
     </div>
     <section class="row">
-    <?php 
-        foreach ($table as $cd) { 
-            $artistID = $cd->artist_id; ?>
-            <div class="cardCD col s12 m8 offset-m2 l4 section">
+        <?php foreach ($table as $cd) {  ?>
+            <div class="cardCD col s12 m6 l4 section">
               <div class="card blue-grey darken-4">
                 <div class="card-content white-text">
                   <span class="card-title titleDisc center-align z-depth-4 section blue-grey"><?= $cd->disc_title ?></span>
-                  <h2 id="artistCDcard" class="center-align light-blue-text"><?= $cd->artist_name ?></h2>
+                  <h2 id="artistCDcard" class="center-align light-blue-text truncate"><?= $cd->artist_name ?></h2>
                   <div class="row">
                         <article class="center-align section">
                             <p class="flow-text">Genre</p>
@@ -46,13 +43,13 @@
                 </div>
                 <div class="card-action center-align">
                     <form action="vue_details_cd.php" method="get">
-                        <input type="hidden" value="<?= $cd->disc_id ?>" name="hiddenDisc">
+                        <input type="hidden" value="<?= $cd->disc_id ?>" name="disc_id">
                         <input class="waves-effect waves-light btn" type="submit" value="Détails">
                     </form>
                 </div>
               </div>
             </div>
-    <?php } ?>
+        <?php } ?>
     </section>
 </main>
 

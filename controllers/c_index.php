@@ -3,7 +3,5 @@
     $result = $db->prepare($requete);
     $result->execute();
     $tableau = $result->fetchAll();
-    $result->closeCursor();
-    
-    
+    $result->closeCursor();  
 ?>
