@@ -23,13 +23,14 @@
             <div class="input-field">
                 <input name="Titre" id="upTitre" type="text" class="validate" value="<?= $row->disc_title ?>">
                 <label for="upTitre">Titre</label>
+                <span class="red-text" id="errUpTitle"></span>
             </div>
             <div>
                 <div class="input-field">
                     <select id="selectArtiste" name="Artist">
                         <option value="<?= $row->artist_id ?>"><?= $row->artist_name ?></option>
                         <?php 
-                            include '../../controllers/c_detail_artist.php'; 
+                            $row_artiste = artist_detail($db); 
                             foreach ($row_artiste as $line) {
                                 if ($line->artist_id != $row->artist_id)
                                 {
@@ -44,21 +45,25 @@
             <div class="input-field">
                 <input name="Annee" id="upAnnee" type="text" class="validate" value="<?= $row->disc_year ?>">
                 <label for="upAnnee">Année</label>
+                <span class="red-text" id="errUpYear"></span>
             </div>
             <div class="input-field">
                 <input name="Genre" id="upGenre" type="text" class="validate" value="<?= $row->disc_genre ?>">
                 <label for="upGenre">Genre</label>
+                <span class="red-text" id="errUpGenre"></span>
             </div>
             <div class="input-field">
                 <input name="Label" id="upLabel" type="text" class="validate" value="<?= $row->disc_label ?>">
                 <label for="upLabel">label</label>
+                <span class="red-text" id="errUpLabel"></span>
             </div>
             <div class="input-field">
                 <input name="Prix" id="upPrix" type="text" class="validate" value="<?= $row->disc_price ?>">
                 <label for="upPrix">Prix</label>
+                <span class="red-text" id="errUpPrice"></span>
             </div>
             <input type="hidden" name="hiddenDisc" value="<?= $row->disc_id ?>">
-            <button class="btn waves-effect waves-light" type="submit" name="modifier_self">Modifier
+            <button id="edit_cd" class="btn waves-effect waves-light" type="submit" name="modifier_self">Modifier
                 <i class="material-icons right">edit</i>
             </button>
             <div class="section">
@@ -74,11 +79,12 @@
                     <input id="file_pict" type="file" name="imagePochette">
                 </div>
                 <div class="file-path-wrapper">
-                    <input class="file-path validate" type="text">
+                    <input id="valuePict" class="file-path validate" type="text">
                 </div>
             </div>
+            <span class="red-text col l8 offset-l4 m9 offset-m3 s10 offset-s2" id="errUpPict"></span>
             <div class="col s8 offset-s2 center-align">
-                <button class="btn waves-effect waves-light blue" type="submit" name="ajout_photo">Valider
+                <button id="picture_up" class="btn waves-effect waves-light blue" type="submit" name="ajout_photo">Valider
                     <i class="material-icons right">add</i>
                 </button>
             </div>

@@ -169,5 +169,18 @@
 
         return $row_artist;
     }
+    
+    // Artistes INFOS
+    function artist_detail($pdo)
+    {
+        // Selection de la table artist à retourner 
+        $requete = 'SELECT * FROM artist';
+        $result = $pdo->prepare($requete);
+        $result->execute();
+        $row_artist = $result->fetchAll();
+        $result->closeCursor();
+
+        return $row_artist;
+    }
 
 ?>

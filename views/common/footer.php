@@ -16,5 +16,7 @@
     </footer>
 </body>
 <script src="../../assets/js/materialize.js"></script>
+<script src="../../assets/js/jQuery.js"></script>
 <script src="../../assets/js/index.js"></script>
+<script src="../../assets/js/verif.js"></script>
 </html>

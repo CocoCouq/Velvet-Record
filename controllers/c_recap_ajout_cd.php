@@ -70,7 +70,7 @@ if (in_array($mimetype, $aMimeTypes) && in_array($extension, $aExt))
             $trans = $db->prepare('ROLLBACK');
             $trans->execute();
             $trans->closeCursor();
-            echo 'Erreur pendant le chargemnt du formulaire : '.$e->getMessage();
+            echo 'Erreur pendant le chargement du formulaire : '.$e->getMessage();
         }
     }
     else
