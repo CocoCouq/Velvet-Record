@@ -1,5 +1,8 @@
 <?php 
-    // Suppression d'un disque 
+// Declaration d'un tableau d'erreur
+    $tabErreur = [];
+
+// Suppression d'un disque 
     function delete_disc($pdo)
     {
         $id_disc = sanitize_int($_POST['hiddenDisc']);
@@ -12,10 +15,15 @@
         // Redirection vers la liste des cd
         header('location:vue_cd.php');
     }
-    
+//////////////////////////////////////////////////////////////////////////////////
+                            /* FORMULAIRE UPDATE PHOTO */
+ 
     // Update de la photo
     function update_pict($pdo)
     {
+        // True si pas d'erreur (valeur a retourner pour affichage du bouton retour)
+        $valide = true;
+        
         $disc = sanitize_int($_POST['hiddenDisc']);
         
         // Recupération du disque du titre
@@ -60,8 +68,8 @@
                 $destination = '../../assets/img/'.$name_final;
 
 
-                // 2Mo
-                if($size < 200000)
+                // 5Mo
+                if($size < 500000)
                 {
                     // Mise en transaction pour s'assurer des l'upload avant le changement de nom 
                     try
@@ -105,25 +113,28 @@
                     }
                 }
                 else
-                {
-                    echo 'Taille trop grande';
-                    exit;
+                { ?>
+                    <h1 class="center-align flow-text red-text">Image trop grande</h1><?php
+                    $valide = false;
                 }
             } 
             else // Si le type n'est pas autorisé
-            {
-               echo "Type de fichier non autorisé";  
-               exit;
+            { ?>
+               <h1 class="center-align flow-text red-text">Type de fichier non autorisé</h1><?php
+               $valide = false;
             }
         }
         else
-        {
-            echo 'Fichier trop grand ou non présent';
-            exit;
+        { ?>
+            <h1 class="center-align flow-text red-text">Fichier trop grand ou non présent</h1><?php 
+            $valide = false;
         }
+        // Bouton retour (presence)
+        return $valide;
     }
     
-    // Informations sur les disques
+/////////////////////////////////////////////////////////////////////////////////
+        // Informations sur les disques
     function fetch_info_disc($pdo)
     {
         $disc = sanitize_int($_POST['hiddenDisc']);
@@ -136,11 +147,87 @@
         $result->closeCursor();
         return $row;
     }
-    
+//////////////////////////////////////////////////////////////////////////////////
+                            /* FORMULAIRE UPDATE */     
+
+        // REGEX 
+        $filtreText = '/(^[\wéèêëûüîïôàçæœ\(\)\&\s\-\.\,\_\+\=\/\%€@\'\"\*\\`\!\?\;\[\]]*$)/i';
+        $filtrePrix = '/(^[0-9]{1,10}\.[0-9]{2}$)/';
+        $filtreYear = '/(^(19|20){1}[0-9]{2}$)/';
+             
+        // Si le bouton submit de 'modifier' est envoyé
+        if(isset($_POST['modifier_self']))
+        {
+        // Verification des champs et récupération des erreurs
+            // Titre
+            if(!empty($_POST['Titre']))
+            {
+                if(!preg_match($filtreText, $_POST['Titre']))
+                {
+                    $tabErreur['title'] = 'Vous utilisez des caractères interdits';
+                }
+            }
+            else 
+            {
+                $tabErreur['title'] = 'Renseignez le champs';
+            }
+            
+            // Genre
+            if(!empty($_POST['Genre']))
+            {
+                if(!preg_match($filtreText, $_POST['Genre']))
+                {
+                    $tabErreur['genre'] = 'Vous utilisez des caractères interdits';
+                }
+            }
+            else 
+            {
+                $tabErreur['genre'] = 'Renseignez le champs';
+            }
+            
+            // Label 
+            if(!empty($_POST['Label']))
+            {
+                if(!preg_match($filtreText, $_POST['Label']))
+                {
+                    $tabErreur['label'] = 'Vous utilisez des caractères interdits';
+                }
+            }
+            else 
+            {
+                $tabErreur['label'] = 'Renseignez le champs';
+            }
+            
+            // Prix 
+            if(!empty($_POST['Prix']))
+            {
+                if(!preg_match($filtrePrix, $_POST['Prix']))
+                {
+                    $tabErreur['prix'] = 'Vous utilisez des caractères interdits';
+                }
+            }
+            else 
+            {
+                $tabErreur['prix'] = 'Renseignez le champs';
+            }
+            // Année
+            if(!empty($_POST['Annee']))
+            {
+                if(!preg_match($filtreYear, $_POST['Annee']))
+                {
+                    $tabErreur['year'] = 'Vous utilisez des caractères interdits';
+                }
+            }
+            else 
+            {
+                $tabErreur['year'] = 'Renseignez le champs';
+            }
+
+        }
+ 
     // UPDATE 
     function update_disc($pdo)
     {
-    
         // Récupération des valeurs dans un tableau
         $array_value = array(
             ':idDisc' => sanitize_int($_POST['hiddenDisc']),
@@ -169,6 +256,8 @@
 
         return $row_artist;
     }
+    
+    /////////////////////////////////////////////////////////////////////////////
     
     // Artistes INFOS
     function artist_detail($pdo)

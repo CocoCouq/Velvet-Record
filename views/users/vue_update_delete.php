@@ -1,6 +1,9 @@
 <?php include '../common/header.php' ?>
 <?php include '../../controllers/c_update_delete.php'; ?>
 
+<div class="row <?= !$valide ? '' : 'hide' ?>">
+    <input id="returnBtn" class="col offset-s1 btn" type="button" value="Retour" name="Retour">
+</div>
 
 <?php 
 // Si bouton delete 
@@ -14,7 +17,7 @@
         update_pict($db);
     }
 // Sinon si Modification
-    else if (isset ($_POST['edit']))
+    else if (isset ($_POST['edit']) || count($tabErreur) > 0)
     {    
         $row = fetch_info_disc($db); ?>
     <h1 class="center-align">Modification</h1> 
@@ -23,7 +26,7 @@
             <div class="input-field">
                 <input name="Titre" id="upTitre" type="text" class="validate" value="<?= $row->disc_title ?>">
                 <label for="upTitre">Titre</label>
-                <span class="red-text" id="errUpTitle"></span>
+                <span class="red-text" id="errUpTitle"><?= $tabErreur['title'] ?: '' ?></span>
             </div>
             <div>
                 <div class="input-field">
@@ -45,22 +48,22 @@
             <div class="input-field">
                 <input name="Annee" id="upAnnee" type="text" class="validate" value="<?= $row->disc_year ?>">
                 <label for="upAnnee">Année</label>
-                <span class="red-text" id="errUpYear"></span>
+                <span class="red-text" id="errUpYear"><?= $tabErreur['year'] ?: '' ?></span>
             </div>
             <div class="input-field">
                 <input name="Genre" id="upGenre" type="text" class="validate" value="<?= $row->disc_genre ?>">
                 <label for="upGenre">Genre</label>
-                <span class="red-text" id="errUpGenre"></span>
+                <span class="red-text" id="errUpGenre"><?= $tabErreur['genre'] ?: '' ?></span>
             </div>
             <div class="input-field">
                 <input name="Label" id="upLabel" type="text" class="validate" value="<?= $row->disc_label ?>">
                 <label for="upLabel">label</label>
-                <span class="red-text" id="errUpLabel"></span>
+                <span class="red-text" id="errUpLabel"><?= $tabErreur['label'] ?: '' ?></span>
             </div>
             <div class="input-field">
                 <input name="Prix" id="upPrix" type="text" class="validate" value="<?= $row->disc_price ?>">
                 <label for="upPrix">Prix</label>
-                <span class="red-text" id="errUpPrice"></span>
+                <span class="red-text" id="errUpPrice"><?= $tabErreur['prix'] ?: '' ?></span>
             </div>
             <input type="hidden" name="hiddenDisc" value="<?= $row->disc_id ?>">
             <button id="edit_cd" class="btn waves-effect waves-light" type="submit" name="modifier_self">Modifier
@@ -97,7 +100,7 @@
 <?php 
     } // fin de else if update
 // AFFICHAGE DES MODIFICATIONS
-    else if(isset ($_POST['modifier_self']))
+    else if(isset ($_POST['modifier_self']) && count($tabErreur) == 0)
     {
         $row_artist = update_disc($db);
         $row_cd = fetch_info_disc($db);?>

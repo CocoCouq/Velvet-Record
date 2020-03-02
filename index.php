@@ -87,7 +87,7 @@
                             </div>
                             <div class="card-action">
                                 <form class="row" action="views/users/vue_details_cd.php" method="get">
-                                    <input type="hidden" value="<?= $new->disc_id ?>" name="hiddenDisc">
+                                    <input type="hidden" value="<?= $new->disc_id ?>" name="disc_id">
                                     <input class="waves-effect waves-light btn col s4 offset-s4" type="submit" value="Voir">
                                 </form>
                             </div>
