@@ -12,5 +12,5 @@
         echo "N° : " . $e->getCode();
         die("Fin du script");
         
-    }       
+    }   
 ?>

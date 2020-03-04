@@ -1,5 +1,17 @@
 <?php include '../../controllers/lib/library.php' ?>
 <?php include '../../models/connexion.php' ?>
+<?php 
+    session_start();
+    if(basename($_SERVER['PHP_SELF']) != 'vue_login.php' && basename($_SERVER['PHP_SELF']) != 'vue_new_user.php')
+    {    
+        if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK' || ($_SESSION['auth'] == 'OK' && $_SESSION['role'] == 'Non vérifiés'))
+        {
+            header('location:vue_login.php');
+            exit;
+        }
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -29,15 +41,18 @@
             <div class="nav-wrapper row">
                 <a href="../../index.php" class="brand-logo black-text col l3 offset-l1 hide-on-med-and-down" title="Accueil">Accueil</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" title="Menu"><i class="material-icons">dehaze</i></a>
-                <ul class="right hide-on-med-and-down col l4">
+                <ul class="right hide-on-med-and-down col l3">
                     <li><a class=" black-text" href="../users/vue_artistes.php" title="Artistes">Artistes</a></li>
                     <li><a class=" black-text" href="../users/vue_cd.php" title="CD-ROM">CD-ROM</a></li>
+                    <li class="z-depth-1"><a class="black-text" href="../users/vue_login.php"><i class="material-icons">perm_identity</i></a></li>
                 </ul>
             </div>
         </nav>
         <!-- Side Nav -->
         <div aria-label="mobile-demo" role="navigation">
             <ul class="sidenav blue-grey lighten-4" id="mobile-demo">
+                <li><a class="black-text" href="../users/vue_login.php"><i class="material-icons">perm_identity</i>Identification</a></li>
+                <li class="divider teal"></li>
                 <li><a href="../../index.php" title="Accueil">Accueil</a></li>
                 <li><a href="../users/vue_artistes.php" title="Artistes">Artistes</a></li>
                 <li><a href="../users/vue_cd.php" title="CD-ROM">CD-ROM</a></li>

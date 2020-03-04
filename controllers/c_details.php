@@ -5,7 +5,7 @@
     $artist = htmlspecialchars($_GET['artist_name']);
     
     // Je reccupère simplement la table disc
-    $requete = 'SELECT * FROM disc WHERE disc_id = :disc';
+    $requete = 'SELECT * FROM disc WHERE artist_id = :disc';
     $result = $db->prepare($requete);
     $result->bindValue(':disc', $id);
     $result->execute();

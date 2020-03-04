@@ -1,5 +1,15 @@
 <?php include 'models/connexion.php' ?>
 <?php include 'controllers/c_index.php' ?>
+
+<?php 
+    session_start();
+    if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK' || ($_SESSION['auth'] == 'OK' && $_SESSION['role'] == 'Non vérifiés'))
+    {
+        header('location:views/users/vue_login.php');
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -15,11 +25,14 @@
         <div class="col l1 offset-l1 m2 offset-m1 s3 offset-s1">
             <img class="responsive-img" src="assets/img/logo_record.png" title="Logo" alt="Logo Record">
         </div>
-        <div class="col l4 offset-l5 m5 offset-m2 s6 offset-s1">
+        <div class="col l4 offset-l5 m5 offset-m2 s5 offset-s1">
             <div class="row">
                 <blockquote id="slogan" cite="Oxmo Puccino" class="col s12">"Le talent, c'est l'audace que les autres n'ont pas."</blockquote>
                 <small class="col l5 offset-l6 m6 offset-m7 s7 offset-s6">Oxmo Puccino</small>
             </div>
+        </div>
+        <div id="roleDisp" class="z-depth-2 blue-grey lighten-5">
+            <?= $_SESSION['role'] ?>
         </div>
     </header>
 <!-- NAVBAR -->
@@ -28,15 +41,18 @@
             <div class="nav-wrapper row">
                 <a href="#" class="brand-logo black-text col l3 offset-l1 hide-on-med-and-down" title="Accueil">Accueil</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger black-text" title="Menu"><i class="material-icons">dehaze</i></a>
-                <ul class="right hide-on-med-and-down col l4">
-                    <li><a class=" black-text" href="views/users/vue_artistes.php" title="Artistes">Artistes</a></li>
-                    <li><a class=" black-text" href="views/users/vue_cd.php" title="CD-ROM">CD-ROM</a></li>
+                <ul class="right hide-on-med-and-down col l3">
+                    <li><a class="black-text" href="views/users/vue_artistes.php" title="Artistes">Artistes</a></li>
+                    <li><a class="black-text" href="views/users/vue_cd.php" title="CD-ROM">CD-ROM</a></li>
+                    <li class="z-depth-1"><a class="black-text" href="views/users/vue_login.php"><i class="material-icons">perm_identity</i></a></li>
                 </ul>
             </div>
         </nav>
         <!-- Side Nav -->
         <div aria-label="mobile-demo" role="navigation">
             <ul class="sidenav blue-grey lighten-4" id="mobile-demo">
+                <li><a class="black-text" href="views/users/vue_login.php"><i class="material-icons">perm_identity</i>Identification</a></li>
+                <li class="divider teal"></li>
                 <li><a href="#" title="Accueil">Accueil</a></li>
                 <li><a href="views/users/vue_artistes.php" title="Artistes">Artistes</a></li>
                 <li><a href="views/users/vue_cd.php" title="CD-ROM">CD-ROM</a></li>
@@ -50,7 +66,7 @@
     </section>
 <!-- Main -->
     <main>
-        <h1 class="center-align">Bienvenue</h1>
+        <h1 class="center-align">Bienvenue <?= $_SESSION['login'] ?></h1>
         <section class="blue-grey lighten-4 z-depth-2">
             <h2 class="flow-text center-align section">Velvet Records</h2>
             <article class="row section">
@@ -69,7 +85,7 @@
                         <div class="card blue-grey darken-4">
                             <div class="card-content white-text">
                                 <span class="card-title titleDisc center-align z-depth-4 section blue-grey"><?= $new->disc_title ?></span>
-                                <h4 id="artistCDcard" class="center-align light-blue-text"><?= $new->artist_name ?></h4>
+                                <h4 class="artistCDcard center-align light-blue-text"><?= $new->artist_name ?></h4>
                                 <article class="center-align">
                                     <p class="flow-text">Genre</p>
                                     <p class="genreDisc"><?= $new->disc_genre ?></p>

@@ -25,6 +25,7 @@
         $valide = true;
         
         $disc = sanitize_int($_POST['hiddenDisc']);
+        echo $disc;
         
         // Recupération du disque du titre
         $requete = 'SELECT disc_title FROM disc WHERE disc_id=:discID';
@@ -65,6 +66,7 @@
                 // Nom et destination final
                 $title_final = str_replace(' ', '_', $title_final);
                 $name_final = $title_final.".".$extension;
+// Sur une autre plateform que MAMP -> utiliser realpath()
                 $destination = '../../assets/img/'.$name_final;
 
 
@@ -101,6 +103,7 @@
                         $trans = $pdo->prepare('COMMIT');
                         $trans->execute();
                         $trans->closeCursor();
+                        clearstatcache();
                         header('Refresh: 3; URL=vue_cd.php');
                     }
                     catch (Exception $e)

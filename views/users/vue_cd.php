@@ -8,11 +8,11 @@
     </div>
     <section class="row">
         <?php foreach ($table as $cd) {  ?>
-            <div class="cardCD col s12 m6 l4 section">
+            <div class="cardCD col s10 offset-s1 m8 offset-m2 l6 offset-l3 section">
               <div class="card blue-grey darken-4">
                 <div class="card-content white-text">
                   <span class="card-title titleDisc center-align z-depth-4 section blue-grey"><?= $cd->disc_title ?></span>
-                  <h2 id="artistCDcard" class="center-align light-blue-text truncate"><?= $cd->artist_name ?></h2>
+                  <h2 class="artistCDcard center-align light-blue-text truncate"><?= $cd->artist_name ?></h2>
                   <div class="row">
                         <article class="center-align section">
                             <p class="flow-text">Genre</p>
@@ -29,7 +29,7 @@
                             </div>
                         </article>
                         <article class="col s5">
-                            <img class="responsive-img" src="../../assets/img/<?= $cd->disc_picture ?>" alt="ImagesDisques" title="images cd-rom">
+                            <img class="imagesPoch responsive-img" src="../../assets/img/<?= $cd->disc_picture ?>" alt="ImagesDisques" title="images cd-rom">
                         </article>
                     </div>
                       <article class="col s4 offset-s4 center-align">

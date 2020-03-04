@@ -27,5 +27,27 @@
         $result = trim($result);
         return $result;
     }
+    
+    // Verification de la complexité du mdp 
+    function complex_password($str)
+    {
+        $len = strlen($str);
+        $compt = preg_match('/\d/', $str) + preg_match('/[A-Z]/', $str) + preg_match('/[a-z]/', $str);
+        $res = $compt == 3 ? true : false;
+        $res = $len < 8 ? false : true;
+        
+        return $res;
+    }
+    
+    // Session d'autorisation 
+    function session_auth($location)
+    {
+        session_start();
+        if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK')
+        {
+            header('location:'.$location);
+            exit;
+        } 
+    }
 
 ?>
