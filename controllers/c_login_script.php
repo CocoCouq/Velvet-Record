@@ -18,7 +18,7 @@ if(password_verify($pwd, $row->user_pwd) && $pwd != 'disconnect_user')
     $_SESSION['login'] = $row->user_fst_name;
     $_SESSION['role'] = $row->role_name;
     $_SESSION['user_id'] = $row->user_id;
-    $_SESSION['auth'] = 'OK';
+    $_SESSION['auth'] = $row->user_confirm ? 'OK' :'verif_mail';
     $_SESSION['erreurlogin'] = '';
 }
 else 
@@ -26,6 +26,9 @@ else
     session_start();
     unset($_SESSION['login']);
     unset($_SESSION['auth']);
+    unset($_SESSION['role']);
+    unset($_SESSION['user_id']);
+    unset($_SESSION['erreurlogin']);
     
     if(ini_get("session.use_cookies"))
     {

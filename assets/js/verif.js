@@ -20,6 +20,8 @@ $(document).ready(function()
     var filtreINT = /^[0-9]{1,4}$/;
     var filtrePrix = /(^[0-9]{1,10}\.[0-9]{2})/;
     var filtrePhoto = /(.(\.\w{1,5})?\.(png|tif|gif|jpg|jpeg|tiff))/;
+    var filtreName = /(^[A-Zéèêëîïíôöòóœàáâäæç\-]+$)|(^(\s*)?$)/i;
+    var filtreMail = /(^[\w\.-]+@[\w\.-]+\.[\w]{2,4}$)|(^(\s*)?$)/;
     
 // Declaration des messages d'erreur
     var errChar = 'Vous utilisez des caractères interdits';
@@ -27,6 +29,9 @@ $(document).ready(function()
     var errPrix = 'Votre prix doit contenir les centimes (ex : 12.00 ou 21.99)';
     var errPict = 'Format non pris en charge';
     var errArt = 'Renseignez un artiste';
+    var errMail = 'Renseignez une adresse mail valide';
+    var errCom_pwd = 'Votre mot de passe doit comporter un chiffre, une minuscule et une majuscule';
+    var errPwd = 'Vos mots de passe ne correspondent pas';
 
  /////////////////////////////////////////////////////////////////////////////////
     
@@ -149,7 +154,7 @@ $(document).ready(function()
             send_add = (!filtreText.test(addGenre) || filtreVide.test(addGenre)) ? false : send_add;
             send_add = (!filtreText.test(addLabel) || filtreVide.test(addLabel)) ? false : send_add;
             send_add = (!filtrePrix.test(addPrice) || filtreVide.test(addPrice)) ? false : send_add;
-            send_add = (!filtrePhoto.test(addPicture) || filtreVide.test(addPicture)) ? false : true;
+            send_add = (!filtrePhoto.test(addPicture) || filtreVide.test(addPicture)) ? false : send_add;
             
             
             if (send_add)
@@ -179,5 +184,70 @@ $(document).ready(function()
             }
         });
     }
+//////////////////////////////////////////////////////////////////////////////////
+
+// NOUVEL UTILISATEUR 
+    if($('#submit_newUser'))
+    {
+        $('#submit_newUser').click(function (event){
+            // Recupération des valeurs
+            var new_nom = $('#nameUser').val().trim();
+            var new_prenom = $('#fisrtNameUser').val().trim();
+            var new_email = $('#mailUser').val().trim();
+            var new_pseudo = $('#nickName').val().trim();
+            var new_mdp1 = $('#mdp_one').val().trim();
+            var new_mdp2 = $('#mdp_conf').val().trim();
+            var accept_form = $('#accept').prop("checked");
+            
+            // Recuperation des messages d'erreurs
+            var send_new = (!filtreName.test(new_nom) || filtreVide.test(new_nom)) ? false : true;
+            send_new = (!filtreName.test(new_prenom) || filtreVide.test(new_prenom)) ? false : send_new;
+            send_new = (!filtreMail.test(new_email) || filtreVide.test(new_email)) ? false : send_new;
+            send_new = (!filtreText.test(new_pseudo) || filtreVide.test(new_pseudo)) ? false : send_new;
+            send_new = accept_form !== true ? false : send_new;
+            
+            // Complexité mdp 
+            var fltInt = /[0-9]/;
+            var fltMin = /[a-z]/;
+            var fltMaj = /[A-Z]/;
+            var res_flt = fltInt.test(new_mdp1) + fltMaj.test(new_mdp1) + fltMin.test(new_mdp1);
+            send_new = res_flt !== 3 ? false : send_new;
+            send_new = new_mdp1 !== new_mdp2 ? false : send_new;
+            
+            if(send_new)
+                document.forms[0].submit();
+            else
+            {
+                event.preventDefault();
+                var tabErreur_new = [];
+                tabErreur_new['name'] = message_form(filtreName, new_nom, errChar);
+                tabErreur_new['ft_name'] = message_form(filtreName, new_prenom, errChar);
+                tabErreur_new['mail'] = message_form(filtreMail, new_email, errMail);
+                tabErreur_new['nk_name'] = message_form(filtreText, new_pseudo, errChar);
+                // Accepte form
+                tabErreur_new['accept'] = accept_form !== true ? 'Accepetez le traitement' : 'test';
+                // mdp
+                tabErreur_new['pwd'] = res_flt !== 3 
+                                     ? errCom_pwd 
+                                     : (new_mdp1 !== new_mdp2 
+                                        ? errPwd 
+                                        : '');
+
+               // Affichage des erreurs
+               $('#errNewName').html(tabErreur_new['name']);
+               $('#errNewFtName').html(tabErreur_new['ft_name']);
+               $('#errNewMail').html(tabErreur_new['mail']);
+               $('#errNewPwd').html(tabErreur_new['pwd']);
+               $('#errNkName').html(tabErreur_new['nk_name']);
+               $('#errAccept').html(tabErreur_new['accept']);
+            }
+            
+            
+            
+           
+            
+        });
+    }
     
 });
+

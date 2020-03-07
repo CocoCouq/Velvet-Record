@@ -20,7 +20,7 @@
 
     // REGEX 
     $filtreText = '/(^[\wéèêëûüîïôàçæœ\(\)\&\s\-\.\,\_\+\=\/\%€@\'\"\*\\`\!\?\;\[\]]*$)/i';
-    $filtrePrix = '/(^[0-9]{1,10}\.[0-9]{2}$)/';
+    $filtrePrix = '/(^[0-9]{1,4}\.[0-9]{2}$)/';
     $filtreYear = '/(^(19|20){1}[0-9]{2}$)/';
     $filtrePict = '/(.(\.\w{1,5})?\.(png|tif|gif|jpg|jpeg|tiff))/';
 
@@ -157,8 +157,8 @@
                 $destination = '../../assets/img/'.$name_final;
 
 
-                // 5Mo
-                if($size < 500000)
+                // 2Mo
+                if($size < 2000000)
                 {
                     // Mise en transaction
                     try

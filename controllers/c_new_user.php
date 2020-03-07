@@ -1,5 +1,17 @@
 <?php
-
+    // Vérification email et nom utilisateur
+    function verif_is_in($var_table, $var_user, $pdo)
+    {
+        $requete = "SELECT user_id FROM user WHERE $var_table =:variable";
+        $result = $pdo->prepare($requete);
+        $result->bindValue(':variable', $var_user);
+        $result->execute();
+        $row = $result->fetchAll();
+        $result->closeCursor();
+        $count = count($row);
+        return($count);
+    }
+    
     if(isset($_POST['submit_inscription']))
     {
         // REGEX
@@ -39,6 +51,11 @@
             {
                 $tabErreur['mail'] = 'Vous utilisez des caractères interdits';
             }
+            // Verification qu'il ne s'agit pas d'un email existant
+            elseif(verif_is_in('user_email', $_POST['mail'], $db) != 0)
+            {
+                $tabErreur['mail'] = 'Cet email possède déjà un compte';
+            }
         }
         else 
         {
@@ -50,6 +67,11 @@
             if(!preg_match($filtre_nkname, $_POST['nickname']))
             {
                 $tabErreur['nickname'] = 'Vous utilisez des caractères interdits';
+            }
+            // Verification qu'il ne s'agit pas d'un nom existant
+            elseif(verif_is_in('user_nk_name', $_POST['nickname'], $db) != 0)
+            {
+                $tabErreur['nickname'] = 'Ce pseudo est déjà utilisé <br> Essayez : '. htmlspecialchars($_POST['nickname']).mt_rand(0,99). mt_rand(10,99). mt_rand(0,9);
             }
         }
         else 
@@ -87,7 +109,18 @@
         $hash_bool = password_verify($_POST['pwd_one'], $hash);
 //        var_dump($hash);
         
+
+        // Création de la clef aléatoire (mt_rand() + recommandé que rand())
+            $i = 0;
+            $key = '';
+            while ($i++ < 20)
+                $key .= mt_rand(0,9);
+            // Encodage de la clef 
+            $hash_key = password_hash($key, PASSWORD_ARGON2ID);
+            $bool_key = password_verify($key, $hash_key);
+            ////////////////////UTILISER URLENCODE & bool_key
         
+ /////////////////////////// PENSER TRANSACTION ////////////////////////////////// 
         // S'il n'y a pas d'erreur 
         if(count($tabErreur) == 0 && $hash_bool)
         {
@@ -97,16 +130,28 @@
                 ':first_name' => sanitize_str($_POST['first_name']),
                 ':mail' => sanitize_str($_POST['mail']),
                 ':nickname' => sanitize_str($_POST['nickname']),
-                ':pwd' => $hash
+                ':pwd' => $hash,
+                ':key' => $hash_key
             );
             
+            
             // Requete d'ajout d'utilisateur
-            $requete = 'INSERT INTO user(user_name, user_fst_name, user_nk_name, user_email, user_pwd, user_role_id) VALUE (:name, :first_name, :nickname, :mail, :pwd, 2)';
+            $requete = 'INSERT INTO user(user_name, user_fst_name, user_nk_name, user_email, user_pwd, user_role_id, user_confirm, user_key) VALUE (:name, :first_name, :nickname, :mail, :pwd, 2, false, :key)';
             
             $result = $db->prepare($requete);
             $result->execute($array_user);
             $result->closeCursor();
-            
+            /* PENSER A PROPOSER UN MAIL AU FORMAT TEXT */
+            // Déclaration des entetes 
+            $aHeaders = array('MIME-Version' => '1.0',
+                                'Content-Type' => 'text/html; charset=utf-8',
+                                'From' => 'Velvet Record <mr.couq@gmail.com>',
+                                'Reply-To' => 'Corentin COUQ <couq@icloud.com>',
+                                'X-Mailer' => 'PHP/' . phpversion()
+                             ); 
+            // include du mail en html
+            include_once 'lib/mail.php';
+            mail($array_user[':mail'], 'Velvet record - Validation d\'email', $message, $aHeaders);
             header('location:../../index.php');
         }
     }

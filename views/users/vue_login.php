@@ -2,13 +2,12 @@
 <?php include '../../controllers/c_login.php' ?>
 
 <?php 
-    if($_SESSION['auth'] != 'OK')
+    if($_SESSION['auth'] != 'OK' && $_SESSION['auth'] != 'verif_mail')
     {
 ?>
+<?php session_start() ?>
 
 <main class="row section">
-    
-  <?php  session_start() ?>
 
     <h1 class="center-align">Connexion</h1>
     <!--FORM A COMPLETER-->
@@ -47,7 +46,7 @@
         <h1 class="center-align">Espace Personnel</h1>
         <section class="center-align container">
             <h2 class="card-panel"><?= $row->user_nk_name ?></h2> 
-            <h3 class="card-panel red white-text <?= ($_SESSION['role'] == 'Non vérifiés') ? '' : 'hide' ?>">
+            <h3 class="card-panel red white-text <?= ($_SESSION['auth'] == 'verif_mail') ? '' : 'hide' ?>">
                 Vérifiez votre email
             </h3>
             <article class="card-panel">

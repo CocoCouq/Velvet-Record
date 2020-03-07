@@ -3,7 +3,7 @@
 
 <?php 
     session_start();
-    if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK' || ($_SESSION['auth'] == 'OK' && $_SESSION['role'] == 'Non vérifiés'))
+    if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK')
     {
         header('location:views/users/vue_login.php');
         exit;

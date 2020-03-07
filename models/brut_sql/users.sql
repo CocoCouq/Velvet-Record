@@ -13,10 +13,10 @@ CREATE TABLE `user`(
     `user_email`    VARCHAR(80) NOT NULL UNIQUE,
     `user_pwd`      BLOB NOT NULL,
     `user_role_id`  INT NOT NULL,
+    `user_confirm`  BOOLEAN,
     FOREIGN KEY (`user_role_id`) REFERENCES `role`(`role_id`)
 );
 
 INSERT INTO `role`(`role_name`) VALUE
 ('Administrateur'),
-('Utilisateur'),
-('Non vérifiés');
+('Utilisateur');

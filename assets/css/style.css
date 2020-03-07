@@ -52,10 +52,3 @@
     padding: 15px !important;
     border-radius: 3px;
 }
-
-img 
-{
-    width: 250px; 
-    height: 250px; 
-    object-fit: cover; 
-}

@@ -4,7 +4,7 @@
     session_start();
     if(basename($_SERVER['PHP_SELF']) != 'vue_login.php' && basename($_SERVER['PHP_SELF']) != 'vue_new_user.php')
     {    
-        if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK' || ($_SESSION['auth'] == 'OK' && $_SESSION['role'] == 'Non vérifiés'))
+        if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK')
         {
             header('location:vue_login.php');
             exit;
