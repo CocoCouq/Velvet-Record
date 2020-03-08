@@ -20,6 +20,15 @@ if(password_verify($pwd, $row->user_pwd) && $pwd != 'disconnect_user')
     $_SESSION['user_id'] = $row->user_id;
     $_SESSION['auth'] = $row->user_confirm ? 'OK' :'verif_mail';
     $_SESSION['erreurlogin'] = '';
+    // Ouverture du fichier
+    $file = fopen("../assets/img/visite.txt","r+");
+    // Lecture
+    $cmt = intval(fgets($file)) + 1;
+    // Positionnement debut 
+    fseek($file,0);
+    // Ecriture 
+    fputs($file, $cmt);
+    fclose($file);
 }
 else 
 {

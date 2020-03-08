@@ -32,7 +32,15 @@
             </div>
         </div>
         <div id="roleDisp" class="z-depth-2 blue-grey lighten-5">
-            <?= $_SESSION['role'] ?>
+            <?php 
+                if($_SESSION['role'] == 'Administrateur'){ ?>
+                    <a class="btn" title="espace administrateur" href="views/admin/vue_index_admin.php">Admin</a>
+            <?php 
+                }
+                else{ 
+                    echo $_SESSION['role'];
+                }
+            ?>
         </div>
     </header>
 <!-- NAVBAR -->
