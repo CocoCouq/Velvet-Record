@@ -2,7 +2,7 @@
 <?php include '../../models/connexion.php' ?>
 <?php 
     session_start();
-    if(basename($_SERVER['PHP_SELF']) != 'vue_login.php' && basename($_SERVER['PHP_SELF']) != 'vue_new_user.php')
+    if(htmlspecialchars(basename($_SERVER['PHP_SELF'])) != 'vue_login.php' && htmlspecialchars(basename($_SERVER['PHP_SELF'])) != 'vue_new_user.php' && htmlspecialchars(basename($_SERVER['PHP_SELF'])) != 'vue_pwd_lost.php' && htmlspecialchars(basename($_SERVER['PHP_SELF']) != 'vue_modif_pwd.php'))
     {    
         if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK')
         {

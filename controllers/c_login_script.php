@@ -41,7 +41,7 @@ else
     
     if(ini_get("session.use_cookies"))
     {
-        setcookie(session_name(), '', time()-42000);
+        setcookie(session_name(), '', time()-84600);
     }
     session_destroy();
     session_start();

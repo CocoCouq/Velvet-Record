@@ -33,7 +33,7 @@
         <div class="col s12 center-align">
             <a class="col s12" href="vue_new_user.php" title="S'inscrire">Créer un compte</a>
             <div class="divider col s2 offset-s5"></div>
-            <a class="col s12" href="#" title="Oublie de mot de passe">Mot de passe oublié</a>
+            <a class="col s12" href="vue_pwd_lost.php" title="Oublie de mot de passe">Mot de passe oublié</a>
         </div>
     </div>
 </main>
@@ -60,7 +60,31 @@
             <button class="btn waves-effect waves-light" type="submit" name="action">Se déconnecter
                 <i class="material-icons right">close</i>
             </button>
-        </form> <?php
+        </form> 
+        <form class="center-align section" action="../../controllers/c_ciao.php" method="post">
+            <input type="hidden" value="<?= $row->user_id ?>" name="user_id">
+            <!-- Modal Trigger -->
+            <a class="waves-effect waves-light btn modal-trigger red" href="#modal1">Supprimer mon compte</a>
+            <!-- Modal Structure -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <h4 class="red section z-depth-3 white-text">Tu es sûr de ton choix ?</h4>
+                    <p class="flow-text">Toutes tes informations seront supprimées</p>
+                    <p>Cette décision n'est pas à prendre à la légère.</p>
+                    <button class="btn waves-effect waves-light red" type="submit" name="ciao_send">Je suis sûr
+                        <i class="material-icons right">directions_run</i>
+                    </button>
+                    <button class="btn waves-effect waves-light" type="submit" name="ciao_again_send">J'hésite
+                        <i class="material-icons right">directions_walk</i>
+                    </button>
+                    <a class="btn waves-effect waves-light blue modal-close" href="">J'abandonne
+                        <i class="material-icons right">hotel</i>
+                    </a>
+                </div>
+            </div>
+        </form>   
+            
+            <?php
     }
 ?>
 <?php include '../common/footer.php' ?>

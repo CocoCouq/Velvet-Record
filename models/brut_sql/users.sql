@@ -14,6 +14,7 @@ CREATE TABLE `user`(
     `user_pwd`      BLOB NOT NULL,
     `user_role_id`  INT NOT NULL,
     `user_confirm`  BOOLEAN,
+    `user_key`	BLOB,
     FOREIGN KEY (`user_role_id`) REFERENCES `role`(`role_id`)
 );
 

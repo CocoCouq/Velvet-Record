@@ -24,19 +24,19 @@
     
     <main class="row">
         <section class="center-align blue-grey lighten-4 col l4 offset-l4 m6 offset-m3 s8 offset-s2 z-depth-1 section">
-            <h3 class="flow-text blue-text">Valider mon email</h3>
+            <h3 class="flow-text blue-text">Modifier le mot de passe</h3>
             <article class="section">
-                <a class="btn blue section" href="http://localhost:8888/Zone/Record/controllers/confirmation.php?id='. urlencode($array_user[':nickname']).'&key='.urlencode($array_user[':key']).'">Cliquez ici</a>
+                <a class="btn blue section" href="http://localhost:8888/Zone/Record/views/users/vue_modif_pwd.php?id='. urlencode($tab->user_nk_name).'&key='.urlencode(bin2hex($key)).'">Cliquez ici</a>
             </article>
         </section>
     </main>
     
     <footer class="page-footer blue-grey lighten-4">
         <section class="center-align">
-            <h4>Rejoignez-nous sur <a href="#">www.velvet-record.com</a></h4>
+            <h4>Rejoignez-nous sur <a href="http://localhost:8888/Zone/Record/index.php">www.velvet-record.com</a></h4>
             <article>
                 <p class="divider"></p>
-                <p><a href="http://localhost:8888/Zone/Record/index.php">se désinscrire</a></p>
+                <p><a href="#">se désinscrire</a></p>
                 <p class="flow-text"><a href="https://fr.wikihow.com/remplir-un-ch%C3%A8que">FAIRE UN DON</a></p>
             </article>
         </section>
@@ -51,3 +51,4 @@
 </html>';
 
 ?>
+
