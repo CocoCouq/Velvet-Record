@@ -1,5 +1,5 @@
+<?php include '../../controllers/login/c_login.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_login.php' ?>
 
 <?php 
     if($_SESSION['auth'] != 'OK' && $_SESSION['auth'] != 'verif_mail')
@@ -13,7 +13,7 @@
     <!--FORM A COMPLETER-->
     <div class="card-panel col l6 offset-l3 m8 offset-m2 s10 offset-s1 blue-grey lighten-5">
         <span class="flow-text center-align col s12 red-text"><?= $_SESSION['erreurlogin'] ?></span>
-        <form class="container section" action="../../controllers/c_login_script.php" method="post">
+        <form class="container section" action="../../controllers/login/c_login_script.php" method="post">
             <section class="section">
                 <div class="input-field">
                     <input name="login_input" placeholder="ou email" id="login_input" type="text" class="validate">
@@ -42,7 +42,7 @@
     }
     else
     {
-        $row = user_infos($db); ?>
+        $row = user_infos(); ?>
         <h1 class="center-align">Espace Personnel</h1>
         <section class="center-align container">
             <h2 class="card-panel"><?= $row->user_nk_name ?></h2> 
@@ -55,13 +55,12 @@
                 <p class="flow-text"><ins>e-mail</ins> : <?= $row->user_email ?></p>
             </article>
         </section>
-        <form class="section center-align" action="../../controllers/c_login_script.php" method="post">
-            <input type="hidden" name="password" value="disconnect_user">
-            <button class="btn waves-effect waves-light" type="submit" name="action">Se déconnecter
+        <form class="section center-align" action="../../controllers/login/c_login_script.php" method="post">
+            <button class="btn waves-effect waves-light" type="submit" name="deconnexion">Se déconnecter
                 <i class="material-icons right">close</i>
             </button>
         </form> 
-        <form class="center-align section" action="../../controllers/c_ciao.php" method="post">
+        <form class="center-align section" action="../../controllers/admin/c_ciao.php" method="post">
             <input type="hidden" value="<?= $row->user_id ?>" name="user_id">
             <!-- Modal Trigger -->
             <a class="waves-effect waves-light btn modal-trigger red" href="#modal1">Supprimer mon compte</a>

@@ -1,6 +1,5 @@
+<?php include '../../controllers/users/c_ajout_artist.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_ajout_artist.php' ?>
-
 
 <main>
  

@@ -1,11 +1,10 @@
-<?php include 'models/connexion.php' ?>
 <?php include 'controllers/c_index.php' ?>
 
 <?php 
     session_start();
     if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK')
     {
-        header('location:views/users/vue_login.php');
+        header('location:views/login/vue_login.php');
         exit;
     }
 ?>
@@ -52,14 +51,14 @@
                 <ul class="right hide-on-med-and-down col l3">
                     <li><a class="black-text" href="views/users/vue_artistes.php" title="Artistes">Artistes</a></li>
                     <li><a class="black-text" href="views/users/vue_cd.php" title="CD-ROM">CD-ROM</a></li>
-                    <li class="z-depth-1"><a class="black-text" href="views/users/vue_login.php"><i class="material-icons">perm_identity</i></a></li>
+                    <li class="z-depth-1"><a class="black-text" href="views/login/vue_login.php"><i class="material-icons">perm_identity</i></a></li>
                 </ul>
             </div>
         </nav>
         <!-- Side Nav -->
         <div aria-label="mobile-demo" role="navigation">
             <ul class="sidenav blue-grey lighten-4" id="mobile-demo">
-                <li><a class="black-text" href="views/users/vue_login.php"><i class="material-icons">perm_identity</i>Identification</a></li>
+                <li><a class="black-text" href="views/login/vue_login.php"><i class="material-icons">perm_identity</i>Identification</a></li>
                 <li class="divider teal"></li>
                 <li><a href="#" title="Accueil">Accueil</a></li>
                 <li><a href="views/users/vue_artistes.php" title="Artistes">Artistes</a></li>

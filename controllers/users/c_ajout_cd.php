@@ -1,19 +1,22 @@
 <?php 
+    include '../../controllers/lib/library.php';
+    require_once '../../models/m_disc.php';
+    require_once '../../models/m_artist.php';
+    
     // Liste des artistes pour le select 
-    function list_artist($pdo)
+    function list_artist()
     {
         // Recupération des artistes pour les options du select 
-        $requete = 'SELECT * FROM artist ORDER BY artist_name';
-        $result = $pdo->prepare($requete);
-        $result->execute();
-        $row_artiste = $result->fetchAll();
-        $result->closeCursor();
+        $artist = new Artist();
+        $row_artiste = $artist->details_artist();
         return $row_artiste;
     }
     
 //////////////////////////////////////////////////////////////////////////////////
                         /* TRAITEMENT FORMULAIRE */    
     
+    
+    $disc = new Disc();
     
     // Declaration d'un tableau d'erreur
     $tabErreur = [];
@@ -134,8 +137,7 @@
             );
 
 
-
-    /* PHOTO */
+            /* PHOTO */
             // Recupération de la taille
             $size = $_FILES['imagePochette']['size'];
 
@@ -160,36 +162,7 @@
                 // 2Mo
                 if($size < 2000000)
                 {
-                    // Mise en transaction
-                    try
-                    {
-                        // START TRANSACTION 
-                        $trans = $db->prepare('START TRANSACTION');
-                        $trans->execute();
-                        $trans->closeCursor();
-
-                        // Alors Upload du fichier 
-                        move_uploaded_file($_FILES['imagePochette']['tmp_name'], $destination); 
-
-     // Insertion des valeurs dans la table
-                        $requete = 'INSERT INTO disc(disc_title, disc_label, disc_genre, disc_year, disc_price, artist_id, disc_picture) VALUE (:titre, :label, :genre, :annee, :prix, :artist, :picture)';
-                        $result = $db->prepare($requete);
-                        $result->execute($array_ajout);
-                        $result->closeCursor();
-
-                        // Commit 
-                        $trans = $db->prepare('COMMIT');
-                        $trans->execute();
-                        $trans->closeCursor();
-                    }
-                    catch (Exception $e)
-                    {
-                        // RollBack
-                        $trans = $db->prepare('ROLLBACK');
-                        $trans->execute();
-                        $trans->closeCursor();
-                        echo 'Erreur pendant le chargement du formulaire : '.$e->getMessage();
-                    }
+                    $disc->add_disc($array_ajout, $destination);
                 }
                 else
                 { ?>

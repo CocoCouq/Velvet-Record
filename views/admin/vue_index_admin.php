@@ -1,5 +1,6 @@
+<?php include '../../controllers/admin/c_index_admin.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_index_admin.php' ?>
+
 <?php 
     session_start();
     if($_SESSION['auth'] == 'OK' && $_SESSION['role'] == 'Administrateur')
@@ -56,11 +57,11 @@
                         </tr>
                         <tr>
                             <th>Nombre d'Utilisateurs</th>
-                            <td><?= count_role($db, 2) ?></td>
+                            <td><?= count_role(2) ?></td>
                         </tr>
                         <tr>
                             <th>Nombre d'administrateurs</th>
-                            <td><?= count_role($db, 1) ?></td>
+                            <td><?= count_role(1) ?></td>
                         </tr>
                     </table>
                 </article>

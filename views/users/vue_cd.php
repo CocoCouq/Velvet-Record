@@ -1,5 +1,5 @@
+<?php include '../../controllers/users/c_cd.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_cd.php' ?>
 
 <main>
     <h1 class="center-align">CD-ROM (<?= $count_disque ?>)</h1>

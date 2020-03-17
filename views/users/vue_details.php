@@ -1,5 +1,5 @@
+<?php include '../../controllers/users/c_details.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_details.php' ?>
 
 <h1 class="center-align"><?= $artist ?> (<?= $count_disque ?>)</h1>   
 <main>

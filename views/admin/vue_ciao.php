@@ -21,7 +21,7 @@
             <main class="center-align">
                 <p class="flow-text">Toutes vos informations ont étaient supprimées de notre base de donnée</p>
             </main> <?php
-            header('Refresh: 5; URL=../users/vue_login.php');
+            header('Refresh: 5; URL=../login/vue_login.php');
         }
         else 
         { ?>
@@ -30,7 +30,7 @@
                 <p class="flow-text">Dans la vie, faut faire des choix</p>
                 <p class="red-text">Si tu hésites on choisira toujours pour toi</p>
             </main> <?php
-            header('Refresh: 8; URL=../users/vue_login.php');
+            header('Refresh: 8; URL=../login/vue_login.php');
         }
     }
         

@@ -1,4 +1,8 @@
 <?php 
+    include '../../controllers/lib/library.php';
+    require_once '../../models/m_artist.php';
+    
+    
 // REGEX 
     $filtre_artist = '/^[\wéèêëûüîïôàçæœ\(\)\&\s\-\.\,\_\+\=\/\%€@\'\"\*\\`\!\?\;\[\]]*$/i';
 
@@ -10,10 +14,10 @@
             if(preg_match($filtre_artist, $_POST['Artist']))
             {
                 $name = sanitize_str($_POST['Artist']);
-                $requete = "INSERT INTO artist(artist_name) VALUE (:name)";
-                $result = $db->prepare($requete);
-                $result->bindValue(':name', $name);
-                $result->execute();
+                
+                $artist = new Artist();
+                $artist->add_artist($name);
+                
                 header('location:vue_artistes.php');
             }
             else 

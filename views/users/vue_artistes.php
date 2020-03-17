@@ -1,13 +1,13 @@
+<?php include '../../controllers/users/c_artistes.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_artistes.php' ?>
 
 <?php 
     if(isset($_POST['delete_artist']))
     {
-        del_art($db); ?>
+        del_art(); ?>
         <p class="center-align flow-text red-text ">Artiste supprimé</p> <?php
     }
-    $tableau = art_ord_name($db);
+    $tableau = art_ord_name();
 ?>
 
 

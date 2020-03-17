@@ -9,11 +9,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>INSCRIPTION RECORD</title>
+    <title>Changement de MDP</title>
 </head>
 <body class="blue-grey lighten-1">
     <header>
-        <h1 class="center-align card-panel blue-grey lighten-4">Validation d\'Email</h1>
+        <h1 class="center-align card-panel blue-grey lighten-4">Mot de Passe oublié</h1>
         <section>
             <article class="card-panel blue-grey lighten-4">
                 <h2 class="flow-text center-align">Bienvenue sur Velvet Record'.$array_user['first_name'].'</h2>
@@ -26,7 +26,7 @@
         <section class="center-align blue-grey lighten-4 col l4 offset-l4 m6 offset-m3 s8 offset-s2 z-depth-1 section">
             <h3 class="flow-text blue-text">Modifier le mot de passe</h3>
             <article class="section">
-                <a class="btn blue section" href="http://localhost:8888/Zone/Record/views/users/vue_modif_pwd.php?id='. urlencode($tab->user_nk_name).'&key='.urlencode(bin2hex($key)).'">Cliquez ici</a>
+                <a class="btn blue section" href="http://localhost:8888/Zone/Record/views/login/vue_modif_pwd.php?id='.$tab->user_id.'&key='.urlencode($key_insert).'">Cliquez ici</a>
             </article>
         </section>
     </main>

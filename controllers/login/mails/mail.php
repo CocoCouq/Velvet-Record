@@ -26,7 +26,7 @@
         <section class="center-align blue-grey lighten-4 col l4 offset-l4 m6 offset-m3 s8 offset-s2 z-depth-1 section">
             <h3 class="flow-text blue-text">Valider mon email</h3>
             <article class="section">
-                <a class="btn blue section" href="http://localhost:8888/Zone/Record/controllers/confirmation.php?id='. urlencode($array_user[':nickname']).'&key='.urlencode($array_user[':key']).'">Cliquez ici</a>
+                <a class="btn blue section" href="http://localhost:8888/Zone/Record/controllers/login/confirmation.php?id='. urlencode($array_user[':nickname']).'&key='.urlencode($array_user[':key']).'">Cliquez ici</a>
             </article>
         </section>
     </main>

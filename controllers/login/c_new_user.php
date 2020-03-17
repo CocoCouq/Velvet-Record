@@ -1,13 +1,13 @@
 <?php
+    include '../../controllers/lib/library.php';
+    require_once '../../models/m_users.php';
+    
     // Vérification email et nom utilisateur
-    function verif_is_in($var_table, $var_user, $pdo)
+    function verif_is_in($var_table, $var_user)
     {
-        $requete = "SELECT user_id FROM user WHERE $var_table =:variable";
-        $result = $pdo->prepare($requete);
-        $result->bindValue(':variable', $var_user);
-        $result->execute();
-        $row = $result->fetchAll();
-        $result->closeCursor();
+        $user = new User();
+        $row = $user->user_by_var($var_table, $var_user);
+        
         $count = count($row);
         return($count);
     }
@@ -136,12 +136,9 @@
             
             
             // Requete d'ajout d'utilisateur
-            $requete = 'INSERT INTO user(user_name, user_fst_name, user_nk_name, user_email, user_pwd, user_role_id, user_confirm, user_key) VALUE (:name, :first_name, :nickname, :mail, :pwd, 2, false, :key)';
+            $user = new User();
+            $user->new_user($array_user);
             
-            $result = $db->prepare($requete);
-            $result->execute($array_user);
-            $result->closeCursor();
-            /* PENSER A PROPOSER UN MAIL AU FORMAT TEXT */
             // Déclaration des entetes 
             $aHeaders = array('MIME-Version' => '1.0',
                                 'Content-Type' => 'text/html; charset=utf-8',
@@ -150,7 +147,7 @@
                                 'X-Mailer' => 'PHP/' . phpversion()
                              ); 
             // include du mail en html
-            include_once 'lib/mail.php';
+            include_once 'mails/mail.php';
             mail($array_user[':mail'], 'Velvet record - Validation d\'email', $message, $aHeaders);
             header('location:../../index.php');
         }

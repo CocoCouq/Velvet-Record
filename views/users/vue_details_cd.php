@@ -1,6 +1,5 @@
+<?php include '../../controllers/users/c_details_cd.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_details_cd.php' ?>
-
 
 <main>
     <div class="row">

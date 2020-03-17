@@ -1,5 +1,5 @@
+<?php include '../../controllers/users/c_ajout_cd.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_ajout_cd.php' ?>
 
 <?php 
     if(isset($_POST['modifier_self']) && count($tabErreur) == 0)
@@ -64,7 +64,7 @@
                     <option value="0" disabled selected>Choisissez</option>
                     
                     <?php 
-                        $row_artiste = list_artist($db);
+                        $row_artiste = list_artist();
                         foreach ($row_artiste as $line) { ?>
                     <option value="<?= $line->artist_id ?>"><?= $line->artist_name ?></option>
                     <?php } ?>

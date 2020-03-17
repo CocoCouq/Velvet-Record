@@ -6,7 +6,7 @@
 ?>
 
 <h1 class="center-align">Administration</h1>
-<form class="container section" action="../../controllers/c_gestion_admin.php" method="post">
+<form class="container section" action="../../controllers/admin/c_gestion_admin.php" method="post">
     <label class="flow-text" for="input_admin">
     <input type="text" id="input_admin" name="input_admin" placeholder="Pseudo ou adresse email de l'utilisateur">
     </label>

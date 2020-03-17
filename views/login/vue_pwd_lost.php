@@ -1,5 +1,5 @@
+<?php include '../../controllers/login/c_pwd_lost.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_pwd_lost.php' ?>
 
 <h1 class="center-align">Mot de passe oublié</h1>
 <main class="center-align section">

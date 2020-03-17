@@ -1,5 +1,5 @@
+<?php include '../../controllers/login/c_new_user.php' ?>
 <?php include '../common/header.php' ?>
-<?php include '../../controllers/c_new_user.php' ?>
 
 
 <h1 class="center-align">Inscription</h1>
