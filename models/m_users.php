@@ -10,6 +10,7 @@
             $this->db = connexion();
         }
         
+        // Details sur un utilisateur en fonction de son id
         public function user_details($id)
         {
             $requete = 'SELECT * FROM user WHERE user_id =:user_id';
@@ -22,6 +23,7 @@
             return $row;
         }
         
+        // Details sur un utilisateur en fonction de son login
         public function user_infos($login)
         {
             $requete = 'SELECT * FROM user JOIN role ON user.user_role_id = role.role_id WHERE user_nk_name =:login OR user_email =:login';
@@ -34,6 +36,7 @@
             return $row;
         }
         
+        // Recupération des id des utilisateurs en fonction d'une valeur de la table 
         public function user_by_var($var_table, $var_user)
         {
             $requete = "SELECT user_id FROM user WHERE $var_table =:variable";
@@ -46,6 +49,7 @@
             return $row;
         }
         
+        // Création d'un nouvel utilisateur
         public function new_user($array)
         {
             $requete = 'INSERT INTO user(user_name, user_fst_name, user_nk_name, user_email, user_pwd, user_role_id, user_confirm, user_key) VALUE (:name, :first_name, :nickname, :mail, :pwd, 2, false, :key)';
@@ -55,6 +59,7 @@
             $result->closeCursor();
         }
         
+        // Selection de la clef mail, de l'id et du booleen de validation 
         public function selct_verif_user($id)
         {
             $requete = 'SELECT user_id, user_key, user_confirm FROM user WHERE user_nk_name =:pseudo';
@@ -67,6 +72,7 @@
             return $row;
         }
         
+        // Verification email de l'utilisateur 
         public function verif_user($id)
         {
             $requete = 'UPDATE user SET user_confirm = true WHERE user_id =:user_id';
@@ -76,6 +82,7 @@
             $result->closeCursor();
         }
         
+        // Selection de la key en fonction de l'utilisateur
         public function select_key($id)
         {
             $requete = 'SELECT user_key FROM user WHERE user_id =:user';
@@ -88,6 +95,7 @@
             return $row->user_key;
         }
         
+        // Chamgement de la key en focntion de l'id
         public function change_key($id, $key)
         {
             $requete = 'UPDATE `user` SET user_key =:key WHERE user_nk_name =:id OR user_email =:id';
@@ -98,6 +106,7 @@
             $result->closeCursor();
         }
         
+        // Changement du mot de passe en fonction de l'id
         public function change_pwd_user($array)
         {
             $requete = 'UPDATE `user` SET user_pwd =:pwd WHERE user_id =:id';
@@ -106,6 +115,7 @@
             $result->closeCursor();
         }
         
+        // Suppréssion d'un utilisateur
         public function delete_user($id)
         {
             $requete = 'DELETE FROM user WHERE user_id =:user';

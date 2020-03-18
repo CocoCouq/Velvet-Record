@@ -2,7 +2,6 @@
     include '../../controllers/lib/library.php';
     require_once '../../models/m_artist.php';
     
-    
 // REGEX 
     $filtre_artist = '/^[\wéèêëûüîïôàçæœ\(\)\&\s\-\.\,\_\+\=\/\%€@\'\"\*\\`\!\?\;\[\]]*$/i';
 

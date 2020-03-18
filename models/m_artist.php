@@ -10,7 +10,7 @@
             $this->db = connexion();
         }
         
-        
+        // Infos sur un artiste 
         public function infos_artist($artist_id)
         {
             $requete = 'SELECT * FROM artist WHERE artist_id=:artist';
@@ -23,6 +23,7 @@
             return $row_artist;
         }
         
+        // Liste des artistes par ordre alphabétique
         public function details_artist()
         {
             // Selection de la table artist à retourner 
@@ -35,6 +36,7 @@
             return $table_artist;
         }
         
+        // Ajout d'un artiste
         public function add_artist($name)
         {
             $requete = "INSERT INTO artist(artist_name) VALUE (:name)";
@@ -44,7 +46,8 @@
             $result->closeCursor();
         }
 
-
+        /* Suppréssion d'un artiste en commencant par ses disques 
+         Mise en transaction pour s'assurer du déroulement sur les 2 tables */
         public function del_artist($artist_id)
         {
             try 

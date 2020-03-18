@@ -1,8 +1,10 @@
 <?php 
     require_once '../../models/m_admin.php';
+    
     session_start();
     if($_SESSION['auth'] == 'OK' && $_SESSION['role'] == 'Administrateur')
     {
+        
         // Suppression utilisateur
         if(isset($_POST['delete_user']))
         {
@@ -26,6 +28,7 @@
                 header('refresh:3;url=../../views/admin/vue_gestion_admin.php');
             }
         }
+        
         // VERIFICATION DE L'UTILISATEUR
         else if(isset($_POST['verif_user']))
         {
@@ -44,6 +47,7 @@
                 header('refresh:3;url=../../views/admin/vue_gestion_admin.php');
             }
         }
+        
         // Role administrateur
         else if(isset($_POST['role_user']))
         {
@@ -66,7 +70,7 @@
         {
             header('location:../../views/admin/vue_index_admin.php');
         }
-    }
+    } // Si l'utilisateur n'est pas connecté ou n'est pas Admin 
     else 
     {
         header('location:../../index.php');

@@ -1,14 +1,5 @@
 <?php include 'controllers/c_index.php' ?>
 
-<?php 
-    session_start();
-    if(!isset($_SESSION['auth']) || $_SESSION['auth'] != 'OK')
-    {
-        header('location:views/login/vue_login.php');
-        exit;
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>

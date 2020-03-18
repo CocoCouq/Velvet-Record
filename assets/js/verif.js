@@ -225,7 +225,7 @@ $(document).ready(function()
                 tabErreur_new['mail'] = message_form(filtreMail, new_email, errMail);
                 tabErreur_new['nk_name'] = message_form(filtreText, new_pseudo, errChar);
                 // Accepte form
-                tabErreur_new['accept'] = accept_form !== true ? 'Accepetez le traitement' : 'test';
+                tabErreur_new['accept'] = accept_form !== true ? 'Accepetez le traitement' : '';
                 // mdp
                 tabErreur_new['pwd'] = res_flt !== 3 
                                      ? errCom_pwd 

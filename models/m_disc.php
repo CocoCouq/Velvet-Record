@@ -10,6 +10,7 @@
             $this->db = connexion();
         }
         
+        // Détails des disques 
         public function disc_details()
         {
             $requete = 'SELECT * FROM disc JOIN artist ON artist.artist_id = disc.artist_id';
@@ -20,6 +21,7 @@
             return $table;
         }
         
+        // Details des disques pour un aritste
         public function disc_artist($id)
         {
             // Je reccupère simplement la table disc
@@ -33,6 +35,7 @@
             return $table;
         }
 
+        // Informations concernant un disque 
         public function disc_infos($id)
         {
             $requete = 'SELECT * FROM disc JOIN artist ON artist.artist_id = disc.artist_id WHERE disc_id =:disc';
@@ -45,6 +48,7 @@
             return $row;
         }
         
+        // Informations sur les 3 derniers disques 
         public function disc_last()
         {
             $requete = 'SELECT * FROM disc JOIN artist ON disc.artist_id = artist.artist_id ORDER BY disc_id DESC LIMIT 3';
@@ -56,7 +60,7 @@
             return $table;
         }
 
-
+        // Suppréssion d'un disque
         public function del_disc($id)
         {
             $requete = 'DELETE FROM disc WHERE disc_id =:id_disc';
@@ -66,6 +70,7 @@
             $result->closeCursor();
         }
         
+        // Modification de la photo
         public function update_pict($id, $destination, $name)
         {
             // Mise en transaction pour s'assurer des l'upload avant le changement de nom 
@@ -104,6 +109,7 @@
             }
         }
         
+        // UDATE disque Hors Photo
         public function up_disc($array)
         {
             $requete = 'UPDATE disc SET disc_title =:titre, disc_label=:label, disc_genre=:genre, disc_year=:annee, disc_price=:prix, artist_id=:artist WHERE disc_id =:idDisc';
@@ -113,6 +119,7 @@
             $result->closeCursor();
         }
 
+        // Ajout d'un disque
         public function add_disc($array, $destination_pict)
         {
             try
